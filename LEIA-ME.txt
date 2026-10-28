@@ -1,0 +1,32 @@
+PLAYNEX — SITE COMPLETO (PROTÓTIPO FRONT-END)
+
+ABRIR
+1. Extraia PLAYNEX_SITE_COMPLETO.zip.
+2. Abra a pasta extraída.
+3. Abra index.html em um navegador moderno.
+
+RECRIADO A PARTIR DA REFERÊNCIA
+- Cabeçalho escuro, logotipo PLAYNEX, navegação, busca, controles PC/BRL e carrinho
+- Hero com a arte de referência, slogan e CTA
+- Faixas de lançamentos, mais vendidos, promoções e jogos gratuitos
+- Grade de jogos, filtros e pesquisa
+- Faixa de benefícios e rodapé
+
+FUNCIONALIDADES DE INTERFACE
+- Pesquisa por nome/gênero
+- Filtros de categoria e faixas promocionais
+- Adicionar/remover jogos no carrinho
+- Contador de itens
+- Modais de login, gift cards, suporte, privacidade, moeda e plataforma
+- Layout responsivo para desktop e celular
+
+IMPORTANTE: AINDA NÃO É UM E-COMMERCE EM PRODUÇÃO
+O carrinho e os formulários são demonstrativos. Nenhuma cobrança, conta, pedido ou mensagem é enviada a um servidor. Não há preços reais, estoque, emissão ou entrega de chaves, autenticação, banco de dados, checkout ou integração com fornecedor.
+
+PARA LANÇAR COM VENDAS REAIS
+1. Confirmar fornecedores e autorização de revenda por jogo/região.
+2. Cadastrar preço, disponibilidade, plataforma, região e política de ativação de cada produto.
+3. Criar backend e banco de dados (por exemplo, Next.js + Supabase).
+4. Integrar gateway de pagamento (Pix/cartão) com confirmação server-side/webhooks.
+5. Implementar pedidos, estoque de chaves, entrega protegida, suporte, reembolso e segurança.
+6. Publicar termos, privacidade e dados legais da empresa.
