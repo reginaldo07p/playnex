@@ -1,32 +1,32 @@
-PLAYNEX — SITE COMPLETO (PROTÓTIPO FRONT-END)
+PLAYNEX — BLACK FRIDAY
 
-ABRIR
-1. Extraia PLAYNEX_SITE_COMPLETO.zip.
-2. Abra a pasta extraída.
-3. Abra index.html em um navegador moderno.
+Inclui:
+- 20 jogos pagos, com preços promocionais definidos pelo proprietário.
+- Preços de referência estimados; confirmar os preços originais antes de anunciá-los como descontos históricos reais.
+- Capas remotas da Steam, busca, filtros e carrinho.
+- Primeira camada de integração PanteraPay em Vercel Functions: criar cobrança PIX, consultar status e receber webhook.
 
-RECRIADO A PARTIR DA REFERÊNCIA
-- Cabeçalho escuro, logotipo PLAYNEX, navegação, busca, controles PC/BRL e carrinho
-- Hero com a arte de referência, slogan e CTA
-- Faixas de lançamentos, mais vendidos, promoções e jogos gratuitos
-- Grade de jogos, filtros e pesquisa
-- Faixa de benefícios e rodapé
+EXECUTAR LOCALMENTE
+Abra index.html para visualizar o catálogo. O checkout usa /api/create-payment e, portanto, só funciona quando publicado com as funções de servidor (por exemplo, Vercel). Abrir index.html diretamente no navegador não executa as APIs.
 
-FUNCIONALIDADES DE INTERFACE
-- Pesquisa por nome/gênero
-- Filtros de categoria e faixas promocionais
-- Adicionar/remover jogos no carrinho
-- Contador de itens
-- Modais de login, gift cards, suporte, privacidade, moeda e plataforma
-- Layout responsivo para desktop e celular
+CONFIGURAÇÃO VERCEL
+1. Importe o projeto para a Vercel.
+2. Em Settings > Environment Variables, adicione PANTERAPAY_API_KEY com a chave privada real fornecida pela PanteraPay. Não coloque essa chave no HTML, no GitHub nem em mensagens públicas.
+3. Faça novo deploy.
+4. Configure o webhook da PanteraPay para https://SEU-DOMINIO/api/webhook/panterapay.
+5. Faça uma transação de teste e confirme no painel da PanteraPay que a resposta e o status batem com a documentação da sua conta.
 
-IMPORTANTE: AINDA NÃO É UM E-COMMERCE EM PRODUÇÃO
-O carrinho e os formulários são demonstrativos. Nenhuma cobrança, conta, pedido ou mensagem é enviada a um servidor. Não há preços reais, estoque, emissão ou entrega de chaves, autenticação, banco de dados, checkout ou integração com fornecedor.
+DETALHES RECUPERADOS DA CONVERSA ANTERIOR
+- API base: https://panterapay-production.up.railway.app
+- Criar transação: POST /transactions
+- Consultar transação: GET /transactions/:id
+- Valor enviado em centavos.
+- Cabeçalho Authorization com a chave sk_live_...
+- Campos de resposta lembrados: id, status, qrCodeBase64, copyPaste, expiresAt e fee.
+- Eventos lembrados: payment.approved e payment.failed.
+- Webhook configurado para /api/webhook/panterapay.
 
-PARA LANÇAR COM VENDAS REAIS
-1. Confirmar fornecedores e autorização de revenda por jogo/região.
-2. Cadastrar preço, disponibilidade, plataforma, região e política de ativação de cada produto.
-3. Criar backend e banco de dados (por exemplo, Next.js + Supabase).
-4. Integrar gateway de pagamento (Pix/cartão) com confirmação server-side/webhooks.
-5. Implementar pedidos, estoque de chaves, entrega protegida, suporte, reembolso e segurança.
-6. Publicar termos, privacidade e dados legais da empresa.
+IMPORTANTE SOBRE O ESTADO DA INTEGRAÇÃO
+A integração foi conectada ao front-end e foram criadas funções de servidor usando os detalhes recuperados da conversa anterior. Como não temos aqui a chave privada real nem uma resposta atual da API para validar o contrato exato de criação de cobrança, é necessário configurar a variável e testar antes de receber pagamentos reais. O payload pode precisar de ajuste conforme a documentação/conta da PanteraPay.
+
+O webhook atualmente recebe eventos, mas ainda não persiste pedidos em banco, não verifica assinatura criptográfica e não libera chaves de jogos. Não considerar pagamento aprovado apenas pela tela do cliente. Para produção, conectar o pedido ao Supabase, validar evento/transação no servidor e só então liberar a chave. Nunca armazenar ou expor a chave privada no front-end.
